@@ -10,6 +10,60 @@
     <title>Library</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <div class="search">
+                
+            </div>
+            <div class="profile">
+                
+                <h1>
+                    Library
+                </h1>
+            </div>
+            
+        </div>
+        <div class="action-header">
+            <div class="actionButtons-Header">
+                <button data-modal-target="#addModal" class="btnHeader">
+                    Add
+                </button>
+                <button class="btnHeader">
+                    Edit
+                </button>
+                <button class="btnHeader">
+                    Delete
+                </button>
+            </div>
+        </div>
+        <div class="modal" id="addModal">
+            <div class="modalHeader">    
+                <div class="modalTitle">Book Details</div>
+                <button data-close-button class="closeButton">&times;</button>
+            </div>
+            <div class="modalBody">
+                <form id="modalForm">
+                    <label for="inputTitle">Title</label>
+                    <input type="text" id="inputTitle" name="inputTitle"><br>
+                    <label for="inputAuthor">Author</label>
+                    <input type="text" id="inputAuthor" name="inputAuthor"><br>
+                    <label for="inputPages">Pages</label>
+                    <input type="text" id="inputPages" name="inputPages"><br>
+                    <label for="inputRead">Read Status</label>
+                    <input type="checkbox" id="inputRead" name="inputRead"><br>
+                    <button class="modalSubmit">Submit</button>
+                </form>    
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div class="mainBody">
+            <div class="bookCard">
+                <h1>The Hobbit</h1>
+                <h3>J.R.R Tolkein</h3>
+                <h3>34 Pages</h3>
+                <h3>Read</h3>
+            </div>
+        </div>  
+    </div>
 </body>
 </html>
