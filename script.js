@@ -9,7 +9,8 @@ function Book(title, author, pages, read) {
 
 function addBooktoLibrary(newBook) {
     myLibrary.push(newBook)
-    displayBook()
+    deleteAllBooks()
+    displayBooks()
 }
 
 //Pop-up Modal for adding books
@@ -59,6 +60,13 @@ modalSubmit.addEventListener('click', submitModal)
 
 function submitModal(event) {
     const modalForm = document.querySelector('#modalForm');
+    console.log("***********")
+    if (modalForm.elements[3].checked){
+        modalForm.elements[3].value = "Read"    
+    }
+    else{
+        modalForm.elements[3].value = "Not Read"    
+    }
     const newBook = new Book(modalForm.elements[0].value, modalForm.elements[1].value, modalForm.elements[2].value, modalForm.elements[3].value );
     addBooktoLibrary(newBook)
     modalForm.reset()
@@ -67,15 +75,38 @@ function submitModal(event) {
     event.preventDefault()
 }
 
+// Deleting all books from the main body
+
+function deleteAllBooks() {
+    let allBooks = document.querySelectorAll(".bookCard")
+    allBooks.forEach(function(book) {
+        book.remove();
+    })
+}
+
+
 // Displaying book from myLibrary
 
-function displayBook() {
+function displayBooks() {
     const body = document.querySelector('.mainBody');
     console.log(myLibrary)
     for (let book in myLibrary) {
-        console.log(myLibrary[book])
+        // console.log("ComeONEverybody")
+        // console.log(book)
         let bookCard = document.createElement('div')
         bookCard.classList.add('bookCard')
+        let closeButton = document.createElement('button')
+        closeButton.innerHTML = "&times;"
+        closeButton.classList.add("closeButton")
+        closeButton.dataset.libraryIndex = book
+        bookCard.appendChild(closeButton)
+
+        closeButton.addEventListener('click', () => 
+        {
+            const currCard = closeButton.closest('.bookCard')
+            console.log(currCard)
+            closeCard(book)
+        })
         let title = document.createElement('h1')
         title.innerText = myLibrary[book].title
         bookCard.appendChild(title)
@@ -86,13 +117,22 @@ function displayBook() {
         let pages = document.createElement('h3')
         pages.innerText = myLibrary[book].pages
         bookCard.appendChild(pages)
-        let status = ""
-        if(myLibrary[book].read == "on")
-            status = "Read"
-        else
-            status = "Not Read"
+        // let status = ""
+        // if(myLibrary[book].read == "read")
+        //     status = "Read"
+        // else
+        //     status = "Not Read"
         let read = document.createElement('h3')
-        read.innerText = status
+        read.innerText = myLibrary[book].read
         bookCard.appendChild(read)
+
     }
+}
+
+function closeCard(index) 
+{
+    let spliced = myLibrary.splice(index, 1)
+    console.log(spliced)
+    deleteAllBooks()
+    displayBooks()
 }

@@ -72,6 +72,19 @@
     font-weight: bold;
 }
 
+.mainBody .closeButton {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    position: absolute;
+    top: 4px;
+    right: 6px;
+}
+
 .modalBody {
     padding: 10px 15px;
 }
@@ -94,8 +107,20 @@
     opacity: 1;
 }
 
+.mainBody {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 80vh;
+    align-content: flex-start;
+}
+
 .bookCard {
-    margin: 2em;
-    padding: 2em;
+    position: relative;
+    margin: 1em;
+    padding: 1em;
+    padding-top: 2em;
     background-color: aquamarine;
+    max-width: 15%;
 }
