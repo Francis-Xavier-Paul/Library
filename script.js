@@ -1,4 +1,4 @@
-let myLibrary = [];
+let myLibrary = [{title: '1233wed', author: 'hreer', pages: '43', read: 'Not Read'}, {title: 'God of Small Things', author: 'Arundathi Roy', pages: '354', read: 'Read'}, {title: 'Sapiens: A Brief History of Humankind', author: 'Yuval Noah', pages: '537', read: 'Not Read'}, {title: '1984', author: 'George Orwell', pages: '241', read: 'Read'}, {title: 'The Godfather', author: 'Mario Puzo', pages: '275', read: 'Not Read'}, {title: 'The Bible:King James Version', author: 'Various Authors', pages: '2313', read: 'Not Read'}, {title: 'The Davinvci Code', author: 'Dan Brown', pages: '349', read: 'Read'}];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -107,6 +107,7 @@ function displayBooks() {
             console.log(currCard)
             closeCard(book)
         })
+
         let title = document.createElement('h1')
         title.innerText = myLibrary[book].title
         bookCard.appendChild(title)
@@ -117,22 +118,70 @@ function displayBooks() {
         let pages = document.createElement('h3')
         pages.innerText = myLibrary[book].pages
         bookCard.appendChild(pages)
-        // let status = ""
-        // if(myLibrary[book].read == "read")
-        //     status = "Read"
-        // else
-        //     status = "Not Read"
         let read = document.createElement('h3')
         read.innerText = myLibrary[book].read
         bookCard.appendChild(read)
 
+        //Creating a switch
+        let label = document.createElement('label')
+        label.classList.add('label')
+        let toggle = document.createElement('div')
+        toggle.classList.add('toggle')
+
+        let readCheck = document.createElement('input')
+        readCheck.type = "checkbox"
+        readCheck.classList.add('toggle-state')
+        readCheck.name = 'check'
+        readCheck.value = 'check'
+        if(myLibrary[book].read == "Read")
+        {
+            readCheck.checked = true   
+        }
+        readCheck.addEventListener('change', () =>
+        {
+            changeRead(book, readCheck)
+        })
+
+        let indicator = document.createElement('div')
+        indicator.classList.add('indicator')
+
+        toggle.append(readCheck, indicator)
+        label.appendChild(toggle)
+        bookCard.appendChild(label)
+
+
+        // let switchYes = document.createElement('span')
+        // switchYes.classList.add('switch-left')
+        // switchYes.innerText = "Yes"
+        // let switchNo = document.createElement('span')
+        // switchNo.classList.add('switch-right')
+        // switchNo.innerText = "No"
+        // label.append(readCheck, switchYes, switchNo)
+        // bookCard.appendChild(label)
     }
 }
 
+// For removing the card after clicking the close button
 function closeCard(index) 
 {
     let spliced = myLibrary.splice(index, 1)
     console.log(spliced)
     deleteAllBooks()
     displayBooks()
+}
+
+function changeRead(index, element)
+{
+    if(element.checked)
+    {
+        myLibrary[index].read = "Read"
+        deleteAllBooks()
+        displayBooks()
+    }
+    else
+    {
+        myLibrary[index].read = "Not Read"
+        deleteAllBooks()
+        displayBooks()
+    }
 }
