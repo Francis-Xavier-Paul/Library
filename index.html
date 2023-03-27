@@ -36,15 +36,32 @@
             </div>
             <div class="modalBody">
                 <form id="modalForm">
-                    <label for="inputTitle">Title</label>
-                    <input type="text" id="inputTitle" name="inputTitle"><br>
-                    <label for="inputAuthor">Author</label>
-                    <input type="text" id="inputAuthor" name="inputAuthor"><br>
-                    <label for="inputPages">Pages</label>
-                    <input type="text" id="inputPages" name="inputPages"><br>
-                    <label for="inputRead">Read Status</label>
-                    <input type="checkbox" id="inputRead" name="inputRead" value="read"><br>
-                    <button class="modalSubmit">Submit</button>
+                    <div class="inputGroup">
+                        <label for="inputTitle">Title</label>
+                        <input type="text" id="inputTitle" name="inputTitle" autocomplete="off" required><br>
+                    </div>
+                    <div class="inputGroup">
+
+                    </div>
+                    <div class="inputGroup">
+                        <label for="inputAuthor">Author</label>
+                        <input type="text" id="inputAuthor" name="inputAuthor" autocomplete="off" required><br>    
+                    </div>
+                    <div class="inputGroup">
+                        <label for="inputPages">Pages</label>
+                        <input type="number" autocomplete="off" id="inputPages" name="inputPages" required><br>                        
+                    </div>
+                    <div class="inputGroup">
+                        <div>
+                            <label for="inputRead">Read Status</label>
+                            <input type="checkbox" id="inputRead" name="inputRead" value="read"><br>
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btnHeader modalSubmit" id="submitButton" >
+                        <span class="button_top"> Submit
+                        </span>
+                    </button>
                 </form>    
             </div>
         </div>

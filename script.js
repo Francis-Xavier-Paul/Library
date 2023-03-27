@@ -1,4 +1,4 @@
-let myLibrary = [{title: '1233wed', author: 'hreer', pages: '43', read: 'Not Read'}, {title: 'God of Small Things', author: 'Arundathi Roy', pages: '354', read: 'Read'}, {title: 'Sapiens: A Brief History of Humankind', author: 'Yuval Noah', pages: '537', read: 'Not Read'}, {title: '1984', author: 'George Orwell', pages: '241', read: 'Read'}, {title: 'The Godfather', author: 'Mario Puzo', pages: '275', read: 'Not Read'}, {title: 'The Bible:King James Version', author: 'Various Authors', pages: '2313', read: 'Not Read'}, {title: 'The Davinvci Code', author: 'Dan Brown', pages: '349', read: 'Read'}];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -44,6 +44,13 @@ function openModal(modal) {
     if(modal == null) return
     modal.classList.add('active')
     overlay.classList.add('active')
+    modal.querySelector('#inputTitle').focus()
+    modal.onkeydown = function(evt) {
+        if(evt.key === 'Escape')
+        {
+            closeModal(modal)
+        }
+    }
 }
     
 
@@ -60,7 +67,6 @@ modalSubmit.addEventListener('click', submitModal)
 
 function submitModal(event) {
     const modalForm = document.querySelector('#modalForm');
-    console.log("***********")
     if (modalForm.elements[3].checked){
         modalForm.elements[3].value = "Read"    
     }
@@ -89,7 +95,6 @@ function deleteAllBooks() {
 
 function displayBooks() {
     const body = document.querySelector('.mainBody');
-    console.log(myLibrary)
     for (let book in myLibrary) {
         // console.log("ComeONEverybody")
         // console.log(book)
@@ -104,7 +109,6 @@ function displayBooks() {
         closeButton.addEventListener('click', () => 
         {
             const currCard = closeButton.closest('.bookCard')
-            console.log(currCard)
             closeCard(book)
         })
 
@@ -148,16 +152,6 @@ function displayBooks() {
         toggle.append(readCheck, indicator)
         label.appendChild(toggle)
         bookCard.appendChild(label)
-
-
-        // let switchYes = document.createElement('span')
-        // switchYes.classList.add('switch-left')
-        // switchYes.innerText = "Yes"
-        // let switchNo = document.createElement('span')
-        // switchNo.classList.add('switch-right')
-        // switchNo.innerText = "No"
-        // label.append(readCheck, switchYes, switchNo)
-        // bookCard.appendChild(label)
     }
 }
 
@@ -165,7 +159,6 @@ function displayBooks() {
 function closeCard(index) 
 {
     let spliced = myLibrary.splice(index, 1)
-    console.log(spliced)
     deleteAllBooks()
     displayBooks()
 }
